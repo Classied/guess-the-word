@@ -1,4 +1,4 @@
-// Create global variables to select the following elements:
+// Create global variables to select the following elements://
 const guessedLettersElement = document.querySelector(".guessed-letters");
 const guessLetterButton = document.querySelector(".guess");
 const letterInput = document.querySelector(".letter");
@@ -11,15 +11,15 @@ const playAgainButton = document.querySelector(".play-again");
 const word = "magnolia";
 const guessedLetters = [];
 
-// Write a function to add placeholders for each letter 
+// Write a function to add placeholders for each letter //
 const placeholder = function (word) {
     const placeholderLetters = [];
+
     for (const letter of word) {
         console.log(letter);
         placeholderLetters.push("●");
     }
-
-    wordsInProgress.innerText = placeholderLetters.join("");
+    wordInProgress.innerText = placeholderLetters.join("");
 };
 
 placeholder(word);
@@ -32,11 +32,16 @@ guessLetterButton.addEventListener("click", function (e) {
     // Grab what was entered in the input 
     const guess = letterInput.value;
 
-
+    // Let's make sure that it is a single letter 
+    const goodGuess = validateInput(guess);
+    if (goodGuess) {
+        // We've got a letter! Let's guess! 
+        makeGuess(guess);
+    }
     letterInput.value = "";
 });
 
-const playerInput = function (input) {
+const validateInput = function (input) {
     const acceptedLetter = /[a-zA-Z]/;
     if (input.length === 0) {
         // is the input empty?
