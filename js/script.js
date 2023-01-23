@@ -1,4 +1,4 @@
-// Create global variables to select the following elements://
+
 const guessedLettersElement = document.querySelector(".guessed-letters");
 const guessLetterButton = document.querySelector(".guess");
 const letterInput = document.querySelector(".letter");
@@ -24,7 +24,6 @@ const getWord = async function () {
 getWord();
 
 
-// Write a function to add placeholders for each letter //
 const placeholder = function (word) {
     const placeholderLetters = [];
 
@@ -38,16 +37,11 @@ const placeholder = function (word) {
 
 guessLetterButton.addEventListener("click", function (e) {
     e.preventDefault();
-    // Empty message paragraph
     message.innerText = "";
 
-    // Grab what was entered in the input 
     const guess = letterInput.value;
-
-    // Let's make sure that it is a single letter 
     const goodGuess = validateInput(guess);
     if (goodGuess) {
-        // We've got a letter! Let's guess! 
         makeGuess(guess);
     }
     letterInput.value = "";
@@ -56,16 +50,12 @@ guessLetterButton.addEventListener("click", function (e) {
 const validateInput = function (input) {
     const acceptedLetter = /[a-zA-Z]/;
     if (input.length === 0) {
-        // is the input empty?
         message.innerText = "Please enter a letter.";
     } else if (input.length > 1) {
-        // Did you type more than one letter?
         message.innerText = "One letter at a time, please!";
     } else if (!input.match(acceptedLetter)) {
-        // Did you type a number, a special character or some other non letter thing?
         message.innerText = "Please enter a letter from A to Z.";
     } else {
-        // we finally got a single letter, omg yes!
         return input;
     }
 };
